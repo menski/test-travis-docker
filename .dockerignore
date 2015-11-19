@@ -1,0 +1,5 @@
+*.md
+LICENSE
+.gitignore
+.travis.yml
+.git
