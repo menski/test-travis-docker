@@ -10,10 +10,20 @@ services:
     - docker
 
 script:
+    # build image
     - docker build -t $IMAGE:SNAPSHOT .
-
-after_success:
+    # tag images
     - docker tag $IMAGE:SNAPSHOT $IMAGE:7.4.0-SNAPSHOT
     - docker tag $IMAGE:SNAPSHOT $IMAGE:tomcat-SNAPSHOT
     - docker tag $IMAGE:SNAPSHOT $IMAGE:tomcat-7.4.0-SNAPSHOT
+    # display images
     - docker images
+
+after_success:
+    # login to docker hub
+    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    # push images
+    - docker push $IMAGE:SNAPSHOT
+    - docker push $IMAGE:7.4.0-SNAPSHOT
+    - docker push $IMAGE:tomcat-SNAPSHOT
+    - docker push $IMAGE:7.4.0-tomcat-SNAPSHOT
