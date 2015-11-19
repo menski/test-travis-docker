@@ -2,13 +2,17 @@ language: generic
 
 sudo: required
 
+env:
+    global:
+        - IMAGE=menski/test-travis-docker
+
 services:
-  - docker
+    - docker
 
 script:
-    - docker build -t camunda/camunda-bpm-platform:SNAPSHOT .
+    - docker build -t $IMAGE:SNAPSHOT .
 
 after_success:
-    - docker tag camunda/camunda-bpm-platform:SNAPSHOT camunda/camunda-bpm-platform:7.4.0-SNAPSHOT
-    - docker tag camunda/camunda-bpm-platform:SNAPSHOT camunda/camunda-bpm-platform:tomcat-SNAPSHOT
-    - docker tag camunda/camunda-bpm-platform:SNAPSHOT camunda/camunda-bpm-platform:tomcat-7.4.0-SNAPSHOT
+    - docker tag $IMAGE:SNAPSHOT $IMAGE:7.4.0-SNAPSHOT
+    - docker tag $IMAGE:SNAPSHOT $IMAGE:tomcat-SNAPSHOT
+    - docker tag $IMAGE:SNAPSHOT $IMAGE:tomcat-7.4.0-SNAPSHOT
