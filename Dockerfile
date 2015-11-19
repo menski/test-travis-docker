@@ -16,13 +16,13 @@ ENV NEXUS=https://app.camunda.com/nexus/service/local/artifact/maven/content?r=p
     POSTGRESQL_VERSION=9.3-1102-jdbc4
 
 # install oracle java and xmlstarlet
-#RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" > /etc/apt/sources.list.d/oracle-jdk.list && \
-    #apt-key adv --recv-keys --keyserver keyserver.ubuntu.com EEA14886 && \
-    #echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    #apt-get update && \
-    #apt-get -y install --no-install-recommends oracle-java8-installer xmlstarlet ca-certificates && \
-    #apt-get clean && \
-    #rm -rf /var/cache/* /var/lib/apt/lists/*
+RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" > /etc/apt/sources.list.d/oracle-jdk.list && \
+    apt-key adv --recv-keys --keyserver keyserver.ubuntu.com EEA14886 && \
+    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
+    apt-get update && \
+    apt-get -y install --no-install-recommends oracle-java8-installer xmlstarlet ca-certificates && \
+    apt-get clean && \
+    rm -rf /var/cache/* /var/lib/apt/lists/*
 
 # download camunda distro
 ADD ${NEXUS}&g=${GROUP}&a=${ARTIFACT}&v=${VERSION}&p=tar.gz /tmp/camunda-bpm-platform.tar.gz
