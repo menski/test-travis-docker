@@ -16,3 +16,4 @@ after_success:
     - docker tag $IMAGE:SNAPSHOT $IMAGE:7.4.0-SNAPSHOT
     - docker tag $IMAGE:SNAPSHOT $IMAGE:tomcat-SNAPSHOT
     - docker tag $IMAGE:SNAPSHOT $IMAGE:tomcat-7.4.0-SNAPSHOT
+    - docker images
