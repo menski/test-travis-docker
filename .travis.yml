@@ -4,4 +4,4 @@ services:
   - docker
 
 script:
-    - docker build -t camunda/camunda-bpm-platform:SNAPSHOT
+    - docker build -t camunda/camunda-bpm-platform:SNAPSHOT .
